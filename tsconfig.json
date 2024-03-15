@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/heading.js", "app/(dashboard)/(routes)/conversation/page.js", "components/sidebar.js", "components/navbar.js", "components/mobile-sidebar.js", "app/layout.js", "app/(landing)/page.js", "app/(dashboard)/layout.js", "app/(auth)/(routes)/layout.js", "app/(auth)/(routes)/sign-up/[[...sign-up]]/page.js", "app/(auth)/(routes)/sign-in/[[...sign-in]]/page.js", "app/(dashboard)/(routes)/dashboard/page.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/heading.js", "app/(dashboard)/(routes)/conversation/page.js"],
   "exclude": ["node_modules"]
 }
