@@ -1,5 +1,5 @@
 "use client";
-import { Music } from "lucide-react";
+import { Music, Video } from "lucide-react";
 import { Heading } from "../../../../components/heading";
 import { useForm } from "react-hook-form";
 import { formSchema } from "./constants";
@@ -13,9 +13,9 @@ import { useEffect, useState } from "react";
 import { Empty } from '@/components/empty'
 import { Loader } from "@/components/loader"
 
-const MusicPage = () => {
+const VideoPage = () => {
     const router = useRouter();
-    const [music, setMusic] = useState();
+    const [video, setVideo] = useState();
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -28,9 +28,9 @@ const MusicPage = () => {
     const onSubmit = async (values) => {
         console.log(values);
         try {
-            setMusic(undefined)
-            const response = await axios.post("/api/music", values)
-            setMusic(response.data.audio)
+            setVideo(undefined)
+            const response = await axios.post("/api/video", values)
+            setVideo(response.data[0])
             form.reset();
 
         } catch (error) {
@@ -43,11 +43,11 @@ const MusicPage = () => {
     }
     return (
         <div>
-            <Heading title="Music Generation"
-                description="Turn your prompt into music."
-                icon={Music}
-                iconColor="text-emerald-500"
-                bgColor="bg-emerald-500/10"
+            <Heading title="Video Generation"
+                description="Turn your prompt into video."
+                icon={Video}
+                iconColor="text-orange-700"
+                bgColor="bg-orange-700/10"
             />
             <div className="px-4 lg:px-0">
                 <div>
@@ -58,13 +58,13 @@ const MusicPage = () => {
                                 <FormItem className="col-span-12 lg:col-span-10">
                                     <FormControl className="m-0 p-0">
                                         <Input className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent" disabled={isLoading}
-                                            placeholder="Piano tunes"
+                                            placeholder="Dog and his owner walking in a beautiful park on a beatiful sunny morning."
                                             {...field} />
                                     </FormControl>
                                 </FormItem>
                             )}
                             />
-                            <Button className="col-span-12 lg:col-span-2 w-full" disabled={isLoading}>Music will be generated here</Button>
+                            <Button className="col-span-12 lg:col-span-2 w-full" disabled={isLoading}>Video will be generated here</Button>
                         </form>
                     </Form>
                 </div>
@@ -75,13 +75,13 @@ const MusicPage = () => {
                             <Loader />
                         </div>
                     )}
-                    {!music && !isLoading && (
-                        <Empty label="No music generated." />
+                    {!video && !isLoading && (
+                        <Empty label="No video generated." />
                     )}
-                    {music && (
-                        <audio controls className="w-full mt-8">
-                            <source src={music} />
-                        </audio>
+                    {video && (
+                        <video  className="w-full aspect-video mt-8 rounded-lg border bg-black" controls>
+                            <source src={video} />
+                        </video>
                     )}
                 </div>
 
@@ -90,4 +90,4 @@ const MusicPage = () => {
     )
 }
 
-export default MusicPage;
+export default VideoPage;
