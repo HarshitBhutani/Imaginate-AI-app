@@ -21,3 +21,7 @@ model UserApiLimit {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+
+// use npx prisma generate to initialise you db evertime on startup
+// npx prisma studio
