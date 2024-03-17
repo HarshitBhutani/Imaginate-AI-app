@@ -22,6 +22,6 @@ model UserApiLimit {
   updatedAt DateTime @updatedAt
 }
 
-
+// npx prisma db push
 // use npx prisma generate to initialise you db evertime on startup
 // npx prisma studio
