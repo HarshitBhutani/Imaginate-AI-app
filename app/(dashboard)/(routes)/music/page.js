@@ -12,8 +12,12 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Empty } from '@/components/empty'
 import { Loader } from "@/components/loader"
+import { useProModal } from "@/hooks/use-pro-modal";
+
 
 const MusicPage = () => {
+    const proModal = useProModal();
+
     const router = useRouter();
     const [music, setMusic] = useState();
     const form = useForm({
@@ -35,6 +39,10 @@ const MusicPage = () => {
 
         } catch (error) {
             // to do premium model
+            // open pro modal purchase popup ONLY if you get 403(forbidden error) ie api exhaust limit 
+            if(error?.response?.status === 403){
+                proModal.onOpen();
+            }
             console.log(error);
         } finally {
             console.log("in refresh finally");

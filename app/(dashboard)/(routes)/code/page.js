@@ -17,8 +17,12 @@ import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
 import { Loader } from "@/components/loader"
 import ReactMarkdown from "react-markdown";
+import { useProModal } from "@/hooks/use-pro-modal";
+
 
 const CodePage = () => {
+    const proModal = useProModal();
+
     const router = useRouter();
     const [messages, setMessages] = useState([]);
     const form = useForm({
@@ -60,6 +64,10 @@ const CodePage = () => {
 
         } catch (error) {
             // to do premium model
+            // open pro modal purchase popup ONLY if you get 403(forbidden error) ie api exhaust limit 
+            if(error?.response?.status === 403){
+                proModal.onOpen();
+            }
             console.log(error);
         } finally {
             console.log("in refresh finally");

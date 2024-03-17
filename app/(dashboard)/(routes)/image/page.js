@@ -17,8 +17,12 @@ import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue} from '@/
 import { cn } from "@/lib/utils";
 import { Loader } from "@/components/loader"
 import Image from "next/image";
+import { useProModal } from "@/hooks/use-pro-modal";
+
 
 const ImagePage = () => {
+    const proModal = useProModal();
+
     const router = useRouter();
     const [images, setImages] = useState([]);
     const form = useForm({
@@ -44,6 +48,10 @@ const ImagePage = () => {
 
         } catch (error) {
             // to do premium model
+            // open pro modal purchase popup ONLY if you get 403(forbidden error) ie api exhaust limit 
+            if(error?.response?.status === 403){
+                proModal.onOpen();
+            }
             console.log(error);
         } finally {
             console.log("in refresh finally");
