@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/heading.js", "app/(dashboard)/(routes)/conversation/page.js", "lib/api-limit.js", "lib/prismadb.js", "hooks/use-pro-modal.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/heading.js", "app/(dashboard)/(routes)/conversation/page.js", "lib/api-limit.js", "lib/prismadb.js", "hooks/use-pro-modal.js", "lib/stripe.ts"],
   "exclude": ["node_modules"]
 }
