@@ -1,12 +1,14 @@
 "use client"
-import {useAuth} from "@clerk/nextjs"
+// import {useAuth} from "@clerk/nextjs"
+import { auth } from '@clerk/nextjs';
+
 import Link from "next/link"
 import TypewriterComponent from "typewriter-effect";
 import {Button} from "@/components/ui/button";
 
 export const LandingHero = () => {
-    const { isSignedIn } = useAuth();
-
+    // const { isSignedIn } = useAuth();
+    const {userId} = auth();
     return (
         <div className="text-white font-bold py-36 text-center space-y-5">
             <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl space-y-5 font-extrabold">
@@ -34,7 +36,7 @@ export const LandingHero = () => {
                 Create content using AI 10x faster.
             </div>
             <div>
-                <Link href={isSignedIn ? "/dasboard" : "/sign-up"}>
+                <Link href={userId ? "/dashboard" : "/sign-up"}>
                     <Button variant="premium" className="md:text-lg p-4 md:p-6 rounded-full font-semibold">
                         Start Generating for Free
                     </Button>
