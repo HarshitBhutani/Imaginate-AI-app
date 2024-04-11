@@ -2,7 +2,6 @@
 import { useEffect } from "react";
 import { useState } from "react"
 import {Card, CardContent} from "@/components/ui/card"
-import { MAX_FREE_COUNTS } from "@/constants";
 import { Progress } from "./ui/progress";
 import { Button } from "./ui/button";
 import { Zap } from "lucide-react";
@@ -13,7 +12,7 @@ export  const FreeCounter = ({apiLimitCount, isPro})=> {
     const proModal = useProModal();
     // to prevent hydration error
     const [mounted, setMounted] = useState(false);
-
+    const MAX_FREE_COUNTS = 5;
     useEffect(()=> {
         setMounted(true);
     }, []);
