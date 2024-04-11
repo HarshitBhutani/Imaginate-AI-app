@@ -3,7 +3,7 @@ import {Button} from "@/components/ui/button"
 import { Zap } from "lucide-react"
 import { useState } from "react"
 import axios from "axios";
-
+import {toast} from "react-hot-toast";
 
 export const SubscriptionButton = ({isPro = false}) => {
     const [loading, setLoading] = useState(false);
@@ -17,6 +17,7 @@ export const SubscriptionButton = ({isPro = false}) => {
         }
         catch(error){
             console.log("BILLING_ERROR ", error);
+            toast.error("Something went wrong")
         }
         finally{
             setLoading(false);
