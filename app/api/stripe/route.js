@@ -41,12 +41,12 @@ export async function GET(){
             line_items: [
                 {
                     price_data : {
-                        currency: "USD",
+                        currency: "INR",
                         product_data : {
                             name: "Imaginate Pro",
                             description: "Unlimited use of Imaginate",
                         },
-                        unit_amount: 999,
+                        unit_amount: 9999,
                         recurring: {
                             interval: "month"
                         }

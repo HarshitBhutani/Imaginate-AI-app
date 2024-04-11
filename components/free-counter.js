@@ -9,7 +9,7 @@ import { Zap } from "lucide-react";
 import {useProModal} from "@/hooks/use-pro-modal"
 
 
-export  const FreeCounter = ({apiLimitCount})=> {
+export  const FreeCounter = ({apiLimitCount, isPro})=> {
     const proModal = useProModal();
     // to prevent hydration error
     const [mounted, setMounted] = useState(false);
@@ -19,6 +19,9 @@ export  const FreeCounter = ({apiLimitCount})=> {
     }, []);
 
     if(!mounted){
+        return null;
+    }
+    if(isPro){
         return null;
     }
     // THIS IS THE PROGRESS BAR IN THE SIDE COMPONENT

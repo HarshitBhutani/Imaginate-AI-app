@@ -9,9 +9,10 @@ import { getApiLimitCount } from "@/lib/api-limit";
 
 interface SidebarProps{
     apiLimitCount : number;
+    isPro: boolean;
 };
 
-const MobileSidebar =  ({apiLimitCount= 0} : SidebarProps) => {
+const MobileSidebar =  ({apiLimitCount= 0, isPro =false} : SidebarProps) => {
     // isMounted vala logic is for hydration error
     const [isMounted, setIsMounted] = useState(false);
 
@@ -31,7 +32,7 @@ const MobileSidebar =  ({apiLimitCount= 0} : SidebarProps) => {
                 </Button>
             </SheetTrigger>
             <SheetContent side="left" className="p-0">
-                <Sidebar apiLimitCount={apiLimitCount}/>
+                <Sidebar isPro={isPro} apiLimitCount={apiLimitCount}/>
             </SheetContent>
         </Sheet>
     );

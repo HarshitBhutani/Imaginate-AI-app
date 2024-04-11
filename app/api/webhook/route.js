@@ -61,4 +61,4 @@ export async function POST(req){
     return new NextResponse(null, {status: 200});
 }
 
-// stripe listen --forward-to localhost:3000/webhook
+// stripe listen --forward-to localhost:3000/api/webhook

@@ -35,3 +35,6 @@ model UserSubscription{
 // use npx prisma generate to initialise you db evertime on startup
 // npx prisma db push
 // npx prisma studio
+
+
+// npx prisma migrate reset 

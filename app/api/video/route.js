@@ -2,6 +2,7 @@ import Replicate from "replicate";
 import {auth} from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import {increaseApiLimit, checkApiLimit} from "@/lib/api-limit";
+import {checkSubscription} from "@/lib/subscription";
 
 
 // ZEROSCOPE
@@ -24,7 +25,8 @@ export async function POST(req){
         }
 
         const freeTrial = await checkApiLimit();
-        if(!freeTrial){
+        const isPro = await checkSubscription();
+        if(!freeTrial && !isPro){
             return new NextResponse("Free trial has expired.", {status: 403})
         }
 
@@ -37,9 +39,11 @@ export async function POST(req){
             }
           );
           console.log(response);
-          await increaseApiLimit();     // after we did a response increase by 1
 
-        
+          if(!isPro){
+            await increaseApiLimit();     // after we did a response increase by 1
+          }
+
           return NextResponse.json(response);
 
     } catch(error){
