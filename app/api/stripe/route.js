@@ -16,7 +16,7 @@ export async function GET(){
             console.log('In thus error Auth ID');
             return new NextResponse("Unauthorized", {status: 401});
         }
-        const userSubscription = await prismadb.userSubscription.findMany({
+        const userSubscription = await prismadb.userSubscription.findUnique({
             where: { userId }
         });
 
